@@ -4,6 +4,9 @@ User ID;Full Name;Email Address
 1;Alice Wonderland;alice.wonderland@example.com
 1;Alice Wonderland;alice.wonderland@example.com
 2;Bob;bob@example.com
+1;Alice Wonderland;alice.wonderland@example.com
+1;Alice;alice@example.com
+2;Bob;bob@example.com
 1;Alice;alice@example.com
 1;Alice;alice@example.com
 2;Bob;bob@example.com

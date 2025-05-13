@@ -11,7 +11,7 @@ from sheetdb.interfaces.model import SheetModel
 # --- 1. Определяем модели ---
 
 # Запуск
-# python -m src.examples.demo_gsheet
+# python -m sheetdb.examples.demo_gsheet
 
 
 class User(SheetModel):

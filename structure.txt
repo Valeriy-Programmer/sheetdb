@@ -10,7 +10,7 @@ sheetdb/
     structure.txt
     users.csv
     users.xlsx
-src/
+sheetdb/
     exceptions.py
     logger_utils.py
     __init__.py

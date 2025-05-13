@@ -5,7 +5,7 @@ from sheetdb.exceptions import NotFoundError
 from sheetdb.interfaces.model import SheetModel
 
 # Запуск
-# python -m src.examples.demo_excel
+# python -m sheetdb.examples.demo_excel
 
 
 class User(SheetModel):
