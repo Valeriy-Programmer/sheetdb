@@ -43,4 +43,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = { find = {} }
-package-dir = { "" = "sheetdb" }
+package-dir = {"" = "src"}
