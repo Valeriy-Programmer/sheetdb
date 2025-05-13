@@ -1,0 +1,10 @@
+service_account.json
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.venv/
+.env
+*.log
+*.sqlite3
+*.egg-info/

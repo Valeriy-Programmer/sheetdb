@@ -1,0 +1,46 @@
+[project]
+name = "sheetdb"
+version = "0.1.0"
+description = "Унифицированный доступ к таблицам (CSV, Excel, Google Sheets)"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Valeriy", email = "valeriy@example.com" }
+]
+dependencies = [
+    "pydantic==2.11.4",
+    "openpyxl==3.1.5",
+    "gspread==6.0.2",
+    "gspread_asyncio==2.0.0",
+    "google-auth==2.40.1",
+    "google-auth-oauthlib==1.2.2",
+    "requests-oauthlib==2.0.0",
+    "oauthlib==3.2.2",
+    "python-dotenv==1.1.0",
+    "cachetools==5.5.2",
+    "rsa==4.9.1",
+    "pyasn1==0.6.1",
+    "pyasn1_modules==0.4.2",
+    "typing-inspection==0.4.0",
+    "typing_extensions==4.13.2",
+    "StrEnum==0.4.15",
+    "annotated-types==0.7.0",
+    "et_xmlfile==2.0.0",
+    "requests==2.32.3",
+    "certifi==2025.4.26",
+    "charset-normalizer==3.4.2",
+    "idna==3.10",
+    "urllib3==2.4.0"
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = ["black", "isort", "pytest"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = { find = {} }
+package-dir = { "" = "sheetdb" }

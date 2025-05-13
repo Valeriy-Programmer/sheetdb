@@ -1,0 +1,30 @@
+sheetdb/
+    .env
+    .gitignore
+    LICENSE
+    MANIFEST.in
+    pyproject.toml
+    README.md
+    requirements.txt
+    structure.txt
+sheetdb/
+    exceptions.py
+    logger_utils.py
+    service_account.json
+    __init__.py
+    backends/
+        csv.py
+        excel.py
+        gsheet.py
+        gsheet_async.py
+        __init__.py
+    examples/
+        config.py
+        demo_csv.py
+        demo_excel.py
+        demo_gsheet.py
+        demo_gsheet_async.py
+    interfaces/
+        base.py
+        model.py
+        __init__.py
