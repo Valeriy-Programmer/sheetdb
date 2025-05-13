@@ -6,11 +6,13 @@ sheetdb/
     pyproject.toml
     README.md
     requirements.txt
+    service_account.json
     structure.txt
-sheetdb/
+    users.csv
+    users.xlsx
+src/
     exceptions.py
     logger_utils.py
-    service_account.json
     __init__.py
     backends/
         csv.py

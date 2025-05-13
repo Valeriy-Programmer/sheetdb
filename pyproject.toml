@@ -42,5 +42,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = { find = {} }
 package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
