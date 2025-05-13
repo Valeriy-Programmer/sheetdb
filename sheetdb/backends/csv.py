@@ -1,10 +1,10 @@
 import csv
 import os
 from typing import Any, Dict, List, Optional, Type
-from src.logger_utils import get_logger
-from src.interfaces.base import BaseSheetDB
-from src.interfaces.model import SheetModel
-from src.exceptions import NotFoundError
+from sheetdb.logger_utils import get_logger
+from sheetdb.interfaces.base import BaseSheetDB
+from sheetdb.interfaces.model import SheetModel
+from sheetdb.exceptions import NotFoundError
 
 logger = get_logger("csvdb")
 

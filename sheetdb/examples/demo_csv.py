@@ -1,17 +1,11 @@
-import asyncio
-from google.oauth2.service_account import Credentials
 from typing import ClassVar, Dict
 from pydantic import model_validator
-from .config import SERVICE_ACCOUNT_FILE, GOOGLE_SCOPES
-from src.backends.gsheet import GoogleSheetDB
-from src.exceptions import NotFoundError
-from src.interfaces.model import SheetModel
-
-
-# --- 1. Определяем модели ---
+from sheetdb.backends.csv import CsvDB
+from sheetdb.exceptions import NotFoundError
+from sheetdb.interfaces.model import SheetModel
 
 # Запуск
-# python -m src.examples.demo_gsheet
+# python -m src.examples.demo_csv
 
 
 class User(SheetModel):
@@ -54,25 +48,11 @@ class Product(SheetModel):
         return values
 
 
-# --- 2. Подключаемся к Google Sheets ---
+# Инициализация
+db = CsvDB("users.csv")
 
 
-def get_creds():
-    return Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
-        scopes=GOOGLE_SCOPES,
-    )
-
-
-# Создаем объект БД
-db = GoogleSheetDB(
-    creds_fn=get_creds, spreadsheet_id="1w19ILIOK82aZzqkEqUb6at63YKnE76hnRq26T6BG0HE"
-)
-
-# --- 3. Работаем с данными ---
-
-
-async def main():
+def main():
     # 3.1.1 Добавить пользователя
     user = User(id=1, name="Alice", email="alice@example.com")
     db.insert(user)
@@ -89,16 +69,6 @@ async def main():
 
     # Лог или проверка
     print(f"Inserted {len(users)} users.")
-
-    # 3.2.1 Добавить продукт
-    product = Product(id=1, name="Laptop", price=999.95)
-    db.insert(product)
-
-    # 3.3.1 Получаем все продукты
-    products = db.get_all(Product)
-    print("Все продукты:")
-    for product in products:
-        print(f"Product: {product.name} ({product.price})")
 
     # 3.3.2 Получить всех пользователей
     users = db.get_all(User)
@@ -140,10 +110,6 @@ async def main():
     except NotFoundError:
         print("Пользователь не найден!")
 
-    # 3.7 Удалить все продукты
-    db.delete_all(Product)
-    print("Таблица продуктов очищена!")
-
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

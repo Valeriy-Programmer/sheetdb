@@ -3,9 +3,9 @@ from google.oauth2.service_account import Credentials
 from typing import ClassVar, Dict
 from pydantic import model_validator
 from .config import SERVICE_ACCOUNT_FILE, GOOGLE_SCOPES
-from src.backends.gsheet_async import AsyncGoogleSheetDB
-from src.exceptions import NotFoundError
-from src.interfaces.model import SheetModel
+from sheetdb.backends.gsheet_async import AsyncGoogleSheetDB
+from sheetdb.exceptions import NotFoundError
+from sheetdb.interfaces.model import SheetModel
 
 # --- 1. Определяем модели ---
 

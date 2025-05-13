@@ -1,11 +1,17 @@
+import asyncio
+from google.oauth2.service_account import Credentials
 from typing import ClassVar, Dict
 from pydantic import model_validator
-from src.backends.excel import ExcelDB
-from src.exceptions import NotFoundError
-from src.interfaces.model import SheetModel
+from .config import SERVICE_ACCOUNT_FILE, GOOGLE_SCOPES
+from sheetdb.backends.gsheet import GoogleSheetDB
+from sheetdb.exceptions import NotFoundError
+from sheetdb.interfaces.model import SheetModel
+
+
+# --- 1. Определяем модели ---
 
 # Запуск
-# python -m src.examples.demo_excel
+# python -m src.examples.demo_gsheet
 
 
 class User(SheetModel):
@@ -48,11 +54,25 @@ class Product(SheetModel):
         return values
 
 
-# Инициализация
-db = ExcelDB("users.xlsx")
+# --- 2. Подключаемся к Google Sheets ---
 
 
-def main():
+def get_creds():
+    return Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE,
+        scopes=GOOGLE_SCOPES,
+    )
+
+
+# Создаем объект БД
+db = GoogleSheetDB(
+    creds_fn=get_creds, spreadsheet_id="1w19ILIOK82aZzqkEqUb6at63YKnE76hnRq26T6BG0HE"
+)
+
+# --- 3. Работаем с данными ---
+
+
+async def main():
     # 3.1.1 Добавить пользователя
     user = User(id=1, name="Alice", email="alice@example.com")
     db.insert(user)
@@ -126,4 +146,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

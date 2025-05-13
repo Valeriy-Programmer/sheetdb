@@ -1,11 +1,11 @@
 from typing import ClassVar, Dict
 from pydantic import model_validator
-from src.backends.csv import CsvDB
-from src.exceptions import NotFoundError
-from src.interfaces.model import SheetModel
+from sheetdb.backends.excel import ExcelDB
+from sheetdb.exceptions import NotFoundError
+from sheetdb.interfaces.model import SheetModel
 
 # Запуск
-# python -m src.examples.demo_csv
+# python -m src.examples.demo_excel
 
 
 class User(SheetModel):
@@ -49,7 +49,7 @@ class Product(SheetModel):
 
 
 # Инициализация
-db = CsvDB("users.csv")
+db = ExcelDB("users.xlsx")
 
 
 def main():
@@ -69,6 +69,16 @@ def main():
 
     # Лог или проверка
     print(f"Inserted {len(users)} users.")
+
+    # 3.2.1 Добавить продукт
+    product = Product(id=1, name="Laptop", price=999.95)
+    db.insert(product)
+
+    # 3.3.1 Получаем все продукты
+    products = db.get_all(Product)
+    print("Все продукты:")
+    for product in products:
+        print(f"Product: {product.name} ({product.price})")
 
     # 3.3.2 Получить всех пользователей
     users = db.get_all(User)
@@ -109,6 +119,10 @@ def main():
         print(f"Удаленный пользователь: {deleted_user.name} ({deleted_user.email})")
     except NotFoundError:
         print("Пользователь не найден!")
+
+    # 3.7 Удалить все продукты
+    db.delete_all(Product)
+    print("Таблица продуктов очищена!")
 
 
 if __name__ == "__main__":
