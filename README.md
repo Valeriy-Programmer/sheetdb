@@ -2,9 +2,10 @@
 pip install -e git+file:///E:/repos_E/phyton/Libraries/sheetdb
 pip install --upgrade git+file:///E:/repos_E/phyton/Libraries/sheetdb#egg=gsheetdb
 pip install git+https://github.com/Valeriy-Programmer/sheetdb
-pip uninstall sheetdb
+
 pip list | Select-String sheetdb
 pip show sheetdb
+pip uninstall sheetdb
 
 sheetdb
 Управляйте Google Таблицами как базой данных — удобно, как ORM.
